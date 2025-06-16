@@ -35,6 +35,29 @@ empty vector into a vector register. We then load 4 elements at a time into the 
 then use an explicit instruction to accumulate those values into a variable. Not every list is
 going to have len(list) % 4 == 0, so with the remaining elements we accumulate them serially.
 
+## Examples
+
+Simdlib comes equipped with common accumulate operations:
+
+```
+>>> import simdlib
+>>> simdlib.sum_list([1, 2, 3])
+6
+>>> simdlib.multiply_list([1, 2, 3])
+6
+>>> simdlib.min_list([1, 2, 3])
+1
+>>> simdlib.max_list([1, 2, 3])
+3
+```
+
+It also comes with mapping operations:
+
+```
+>>> simdlib.add_each_list([1, 2, 3], 1)
+[2, 3, 4]
+```
+
 ## Benchmark Results
 
 Included in the the tests folder is benchmarking code. Running on a M3 Pro with Sequoia 15.5. Three
@@ -86,6 +109,30 @@ converting to np.arrays.
 A "real-life" example is also available in tests/stock_example.py which demonstrates using simdlib
 to calculate the sharpe ratio from a generated list of stock prices. The results are as follows:
 
+```
 naive 0.1298867130279541
 optimized 0.10430599689483643
 numpy 0.11439987182617188
+```
+
+## Setup
+
+Create venv and setup dependencies:
+
+```
+pip install requirements.txt
+```
+
+Install the source distribution locally:
+
+```
+pip install -e .
+```
+
+To install from PyPi:
+
+```
+pip install simdlib
+```
+
+PyPi distribution page: https://pypi.org/project/simdlib/
