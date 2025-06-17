@@ -66,40 +66,12 @@ elements. We have our SIMD-accelerated implementation, which replaces the for lo
 call. Then, we also include a numpy example to show that in certain circumstances it can beat it
 as well. We test out various accumulation operations on a nested list object.
 
-I was able to get the following results (in secs) running 100 iterations each time:
+I was able to get the following results (in secs) running 100 iterations each time on a M3 Macbook
+Sequoia 15.5:
 
-```
-sum op:
-naive 0.6113339829444885
-optimized 0.5228000903129577
-numpy_func 0.8831670045852661
+![Screenshot 2025-06-17 at 4 10 37 PM](https://github.com/user-attachments/assets/4b8a9048-9c1f-4873-970a-43a2b640fb57)
 
-multiply op:
-naive 0.6138886904716492
-optimized 0.5130776786804199
-numpy_func 0.8746641612052918
-
-min op:
-naive 0.6658641147613525
-optimized 0.5254337954521179
-numpy_func 0.894232234954834
-209.55441308021545
-
-max op:
-naive 0.7053544044494628
-optimized 0.5487733411788941
-numpy_func 0.9244655680656433
-
-any op:
-naive 0.5905903220176697
-optimized 0.5639568519592285
-numpy_func 0.9229762864112854
-
-all op:
-naive 0.5866790390014649
-optimized 0.5561843490600586
-numpy_func 0.9211705374717712
-```
+We see an average improvement of ~14% compared to naive for loop approach.
 
 In this specific case, we see that our optimized functions perform best. This is likely due to the
 fact that versus the naive version, we utilize SIMD operations vs. performing each accumulate
