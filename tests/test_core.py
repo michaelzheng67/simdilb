@@ -6,6 +6,8 @@ from simdlib import (sum_list, multiply_list, min_list, max_list, any_list, all_
 
 def test_sum():
     assert sum_list([1, 2, 3]) == 6
+    assert sum_list([1.0, 2.0, 3.0]) == 6.0
+    assert sum_list([1.0, 2, 3]) == 6.0
     assert sum_list([-1, -2, -3]) == -6
     with pytest.raises(SystemError):
         sum_list([]) == 0
@@ -16,6 +18,9 @@ def test_multiply():
     assert multiply_list([0, 1, 2, 3]) == 0
     assert multiply_list([1, 2, 3]) == 6
     assert multiply_list([-1, -2, -3]) == -6
+    assert multiply_list([0.0, 1.0, 2.0, 3.0]) == 0.0
+    assert multiply_list([1.0, 2, 3]) == 6.0
+    assert multiply_list([-1.0, -2.0, -3]) == -6.0
     with pytest.raises(SystemError):
         multiply_list([]) == 1
     with pytest.raises(SystemError):
@@ -58,29 +63,39 @@ def test_all():
 def test_add_each():
     assert add_each_list([1, 2, 3], 1) == [2, 3, 4]
     assert add_each_list([0, 0, 0], 0) == [0, 0, 0]
+    assert add_each_list([1.0, 2, 3], 1) == [2.0, 3.0, 4.0]
+    assert add_each_list([0, 0, 0], 0.0) == [0.0, 0.0, 0.0]
     with pytest.raises(SystemError):
         add_each_list([], 1)
 
 def test_subtract_each():
     assert subtract_each_list([1.0, 2.0, 3.0], 1.0) == [0.0, 1.0, 2.0]
     assert subtract_each_list([0.0, 0.0, 0.0], 0) == [0.0, 0.0, 0.0]
+    assert subtract_each_list([1.0, 2, 3], 1) == [0.0, 1.0, 2.0]
+    assert subtract_each_list([0, 0, 0], 0.0) == [0.0, 0.0, 0.0]
     with pytest.raises(SystemError):
         subtract_each_list([], 0)
 
 def test_multiply_each():
     assert multiply_each_list([1, 2, 3], 2) == [2, 4, 6]
     assert multiply_each_list([1, 2, 3], 1) == [1, 2, 3]
+    assert multiply_each_list([1.0, 2.0, 3.0], 2) == [2.0, 4.0, 6.0]
+    assert multiply_each_list([1.0, 2.0, 3.0], 1.0) == [1.0, 2.0, 3.0]
     with pytest.raises(SystemError):
         multiply_each_list([], 0)
 
 def test_square_each():
     assert square_each_list([1.0, 2.0, 3.0]) == [1.0, 4.0, 9.0]
     assert square_each_list([0.0, 0.0, 0.0]) == [0.0, 0.0, 0.0]
+    assert square_each_list([1.0, 2, 3]) == [1.0, 4.0, 9.0]
+    assert square_each_list([0.0, 0, 0.0]) == [0.0, 0.0, 0.0]
     with pytest.raises(SystemError):
         square_each_list([])
 
 def test_subtract_and_square_each():
+    assert subtract_and_square_each_list([1, 2, 3], 1) == [0, 1, 4]
+    assert subtract_and_square_each_list([1, 2, 3], 0) == [1, 4, 9]
     assert subtract_and_square_each_list([1.0, 2.0, 3.0], 1) == [0.0, 1.0, 4.0]
-    assert subtract_and_square_each_list([1.0, 2.0, 3.0], 0) == [1.0, 4.0, 9.0]
+    assert subtract_and_square_each_list([1.0, 2.0, 3.0], 0.0) == [1.0, 4.0, 9.0]
     with pytest.raises(SystemError):
         subtract_and_square_each_list([], 0)
