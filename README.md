@@ -87,6 +87,8 @@ optimized 0.10430599689483643
 numpy 0.11439987182617188
 ```
 
+A nearly 17% increase just by swapping out any for loops with our simdlib functions.
+
 ## Setup
 
 Create venv and setup dependencies:
