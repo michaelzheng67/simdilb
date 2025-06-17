@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simdlib"
-version = "0.1.0"
+version = "0.1.1"
 description = "SIMD-accelerated library for list computations"
 authors = [
     { name = "Michael Zheng", email = "qx2zheng@uwaterloo.ca" }

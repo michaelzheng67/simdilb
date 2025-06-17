@@ -2,7 +2,7 @@ from setuptools import setup, Extension
 
 setup(
     name="simdlib",
-    version="0.1.0",
+    version="0.1.1",
     packages=["simdlib"],
     ext_modules=[
         Extension(

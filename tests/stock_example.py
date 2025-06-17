@@ -58,14 +58,14 @@ def sharpe_ratio(prices, risk_free_rate=0.0):
     if args.naive:
       mean_return = sum(log_returns) / length
     if args.optimized:
-      mean_return = simdlib.sum_list_float(log_returns) / length
+      mean_return = simdlib.sum_list(log_returns) / length
     if args.numpy:
       mean_return = np.sum(log_returns) / length
 
     if args.naive:
       variance = sum((r - mean_return) ** 2 for r in log_returns) / length
     if args.optimized:
-      variance = simdlib.sum_list_float(simdlib.subtract_and_square_each_list(log_returns, mean_return))
+      variance = simdlib.sum_list(simdlib.subtract_and_square_each_list(log_returns, mean_return))
     if args.numpy:
       log_returns = np.array(log_returns)
       variance = np.mean((log_returns - mean_return) ** 2)
